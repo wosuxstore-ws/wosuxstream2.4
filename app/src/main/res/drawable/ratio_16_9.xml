@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Invisible size holder: an ImageView with adjustViewBounds uses this 16:9 size to get its height from its width. Draws nothing. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <size android:width="160dp" android:height="90dp" />
+    <solid android:color="@android:color/transparent" />
+</shape>

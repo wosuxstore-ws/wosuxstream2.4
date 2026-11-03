@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Phase 31: the Settings tab. A vertical list of focusable card rows (touch + remote). Switch rows toggle on a click of the whole row. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:paddingStart="16dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_settings" />
+
+        <LinearLayout
+            android:id="@+id/rowHideDead"
+            style="@style/SettingsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.RowTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_hide_dead" />
+
+                <TextView
+                    style="@style/Text.Meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/set_hide_dead_sub" />
+            </LinearLayout>
+
+            <!-- Not focusable / clickable on purpose: the row is the control, a click on it toggles the switch -->
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swHideDead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:saveEnabled="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowSkipDead"
+            style="@style/SettingsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.RowTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_skip_dead" />
+
+                <TextView
+                    style="@style/Text.Meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/set_skip_dead_sub" />
+            </LinearLayout>
+
+            <!-- Not focusable / clickable on purpose: the row is the control, a click on it toggles the switch -->
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swSkipDead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:saveEnabled="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowAutoCheck"
+            style="@style/SettingsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.RowTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_auto_check" />
+
+                <TextView
+                    style="@style/Text.Meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/set_auto_check_sub" />
+            </LinearLayout>
+
+            <!-- Not focusable / clickable on purpose: the row is the control, a click on it toggles the switch -->
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swAutoCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:saveEnabled="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowQuality"
+            style="@style/SettingsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.RowTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_quality" />
+
+                <TextView
+                    style="@style/Text.Meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/set_quality_sub" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/qualityValue"
+                style="@style/Text.Meta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:maxWidth="160dp"
+                android:maxLines="1"
+                android:textColor="@color/accent"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowSource"
+            style="@style/SettingsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.RowTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_source" />
+
+                <TextView
+                    style="@style/Text.Meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/set_source_sub" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/sourceValue"
+                style="@style/Text.Meta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:maxWidth="160dp"
+                android:maxLines="1"
+                android:textColor="@color/accent"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowRefresh"
+            style="@style/SettingsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:gravity="start|center_vertical">
+
+            <TextView
+                style="@style/Text.RowTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_refresh" />
+
+            <TextView
+                style="@style/Text.Meta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/set_refresh_sub" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowClearCache"
+            style="@style/SettingsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:gravity="start|center_vertical">
+
+            <TextView
+                style="@style/Text.RowTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_clear_cache" />
+
+            <TextView
+                style="@style/Text.Meta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/set_clear_cache_sub" />
+        </LinearLayout>
+
+        <!-- About: focusable (so the remote can reach it and the list scrolls to it) but not clickable, it only shows the version -->
+        <LinearLayout
+            android:id="@+id/rowAbout"
+            style="@style/SettingsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="false"
+            android:gravity="start|center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Text.RowTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_about" />
+
+            <TextView
+                android:id="@+id/aboutValue"
+                style="@style/Text.Meta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

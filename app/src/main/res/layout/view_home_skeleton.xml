@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home skeleton (Phase 23): hero-sized block + 3 rows of 5 card-sized blocks. Plain views, no RecyclerView.
+     Sizes and margins match item_hero.xml / item_channel.xml / item_row.xml. Shown by HomeFragment while nothing is loaded yet. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.freetv.app.ShimmerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hero_h"
+        android:layout_margin="@dimen/screen_pad" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/screen_pad"
+        android:paddingEnd="@dimen/screen_pad">
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/screen_pad"
+        android:paddingEnd="@dimen/screen_pad">
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/screen_pad"
+        android:paddingEnd="@dimen/screen_pad">
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+
+        <com.freetv.app.ShimmerView
+            android:layout_width="@dimen/card_w_row"
+            android:layout_height="@dimen/card_h_row"
+            android:layout_margin="6dp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Phase 37: error card of the player (the "Tuning in" screen has no text of its own: it shows the channel name) -->
+    <string name="player_err_title">This channel isn\'t available right now</string>
+    <string name="player_err_retry">Retry</string>
+    <string name="player_err_next">Next channel</string>
+    <string name="player_err_countdown">Trying the next channel in %1$d…</string>
+</resources>

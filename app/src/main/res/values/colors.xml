@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core colors (names unchanged, Wosux Stream values) -->
+    <color name="bg">#0A0D12</color>
+    <color name="surface">#131923</color>
+    <color name="surface_focus">#1C2533</color>
+    <color name="accent">#02E1FE</color>
+    <color name="text">#FFFFFF</color>
+    <color name="text_dim">#9AA4B2</color>
+    <color name="logo_bg">#E9ECF2</color>
+
+    <!-- Wosux Stream brand colors -->
+    <color name="brand_blue">#0088FF</color>
+    <color name="brand_blue_mid">#02AEF9</color>
+    <color name="brand_cyan">#02E1FE</color>
+    <color name="silver">#E2E3E9</color>
+    <color name="silver_dim">#9AA0AA</color>
+    <color name="live_red">#FF4D5A</color>
+    <color name="ok_green">#2EE59D</color>
+    <color name="dead_gray">#5B6475</color>
+    <color name="scrim">#CC0A0D12</color>
+</resources>

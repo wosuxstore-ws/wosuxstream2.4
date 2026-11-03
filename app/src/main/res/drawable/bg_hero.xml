@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hero banner background (Phase 22): deep blue to the app background, left to right, plus a soft cyan glow on the left. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:endColor="#0A0D12"
+                android:startColor="#0B2A4A" />
+            <corners android:radius="@dimen/card_radius" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:centerX="0.12"
+                android:centerY="0.5"
+                android:endColor="#0002E1FE"
+                android:gradientRadius="260dp"
+                android:startColor="#3302E1FE"
+                android:type="radial" />
+            <corners android:radius="@dimen/card_radius" />
+        </shape>
+    </item>
+</layer-list>

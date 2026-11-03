@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Wide screens (TV, tablet, phone in landscape): big 16:9 plate -->
+    <dimen name="hero_plate_w">240dp</dimen>
+    <dimen name="hero_plate_h">135dp</dimen>
+</resources>

@@ -1,0 +1,78 @@
+name: Build APK
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # No Android SDK step needed: ubuntu-latest already ships the SDK (ANDROID_HOME)
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      # Optional: your own signing key. When the secret WOSUX_KEYSTORE_BASE64 exists, it replaces app/freetv.keystore
+      # (then the three other WOSUX_ secrets must exist too). Without it, the keystore from the repo is used.
+      - name: Use keystore from secret (optional)
+        env:
+          WOSUX_KEYSTORE_BASE64: ${{ secrets.WOSUX_KEYSTORE_BASE64 }}
+          WOSUX_STORE_PASSWORD: ${{ secrets.WOSUX_STORE_PASSWORD }}
+          WOSUX_KEY_ALIAS: ${{ secrets.WOSUX_KEY_ALIAS }}
+          WOSUX_KEY_PASSWORD: ${{ secrets.WOSUX_KEY_PASSWORD }}
+        run: |
+          if [ -n "$WOSUX_KEYSTORE_BASE64" ]; then
+            if [ -z "$WOSUX_STORE_PASSWORD" ] || [ -z "$WOSUX_KEY_ALIAS" ] || [ -z "$WOSUX_KEY_PASSWORD" ]; then
+              echo "::error::WOSUX_KEYSTORE_BASE64 is set, so WOSUX_STORE_PASSWORD, WOSUX_KEY_ALIAS and WOSUX_KEY_PASSWORD must be set too."
+              exit 1
+            fi
+            printf '%s' "$WOSUX_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/wosux.keystore"
+            if [ ! -s "$RUNNER_TEMP/wosux.keystore" ]; then
+              echo "::error::WOSUX_KEYSTORE_BASE64 could not be decoded (is it the base64 text of the keystore file?)."
+              exit 1
+            fi
+            mv "$RUNNER_TEMP/wosux.keystore" app/freetv.keystore
+            echo "Signing with the keystore from the secret."
+          else
+            echo "No keystore secret: signing with app/freetv.keystore from the repo."
+          fi
+
+      - name: Build APKs (release + test)
+        env:
+          WOSUX_STORE_PASSWORD: ${{ secrets.WOSUX_STORE_PASSWORD }}
+          WOSUX_KEY_ALIAS: ${{ secrets.WOSUX_KEY_ALIAS }}
+          WOSUX_KEY_PASSWORD: ${{ secrets.WOSUX_KEY_PASSWORD }}
+        run: gradle :app:assembleRelease :app:assembleDebug --no-daemon --stacktrace
+
+      - name: Collect APKs
+        run: |
+          cp app/build/outputs/apk/release/app-release.apk Wosux-Stream.apk
+          cp app/build/outputs/apk/debug/app-debug.apk Wosux-Stream-test.apk
+
+      - name: Upload APKs (Actions artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Wosux-Stream-apk
+          path: |
+            Wosux-Stream.apk
+            Wosux-Stream-test.apk
+
+      - name: Publish GitHub Release (only when you push a tag like v1.0.0)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Wosux-Stream.apk
+            Wosux-Stream-test.apk

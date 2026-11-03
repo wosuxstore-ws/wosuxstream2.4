@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wosux Stream</string>
+
+    <!-- main screen -->
+    <string name="source_btn">Source: %1$s</string>
+    <string name="search">Search</string>
+    <string name="search_active">Search: %1$s</string>
+    <string name="favorites_off">☆ Favorites</string>
+    <string name="favorites_on">★ Favorites</string>
+    <string name="refresh">Refresh</string>
+    <string name="channels_count">%1$d channels</string>
+    <string name="empty_list">No channels to show.\nTry another source, clear the search, or tap Refresh.</string>
+    <string name="empty_favorites">No favorites yet.\nPress and hold a channel (or hold OK on the remote) to add it.</string>
+    <string name="fav_added">Added to favorites</string>
+    <string name="fav_removed">Removed from favorites</string>
+
+    <!-- dialogs -->
+    <string name="choose_source">Choose channel source</string>
+    <string name="src_all">All channels</string>
+    <string name="src_country">By country…</string>
+    <string name="src_category">By category…</string>
+    <string name="src_language">By language…</string>
+    <string name="src_custom">Custom playlist (M3U link)…</string>
+    <string name="search_title">Search channels</string>
+    <string name="search_hint">Channel name or category</string>
+    <string name="custom_hint">https://example.com/playlist.m3u</string>
+    <string name="custom_name">Custom playlist</string>
+    <string name="custom_invalid">Please enter a link starting with http:// or https://</string>
+    <string name="load">Load</string>
+    <string name="clear">Clear</string>
+
+    <!-- errors -->
+    <string name="err_empty">The playlist is empty.</string>
+    <string name="err_refresh">Couldn\'t refresh (offline?). Showing the saved list.</string>
+    <string name="err_load">Couldn\'t load channels: %1$s</string>
+
+    <!-- player -->
+    <string name="prev">◀ Prev</string>
+    <string name="next">Next ▶</string>
+    <string name="fav_off">☆ Favorite</string>
+    <string name="fav_on">★ Favorited</string>
+    <string name="player_error">This channel isn\'t available right now.\nPress ▲ / ▼ (or Prev / Next) to try another one.</string>
+
+    <!-- nav bar (Phase 21) -->
+    <string name="nav_home">Home</string>
+    <string name="nav_browse">Browse</string>
+    <string name="nav_list">My List</string>
+    <string name="nav_settings">Settings</string>
+    <string name="coming_soon">Coming soon</string>
+
+    <!-- hero banner (Phase 22) -->
+    <string name="hero_live">LIVE</string>
+    <string name="hero_watch">Watch</string>
+    <string name="hero_list">My List</string>
+    <string name="hero_in_list">✓ My List</string>
+
+    <!-- category grid, "See all" (Phase 24) -->
+    <string name="back">◀ Back</string>
+    <string name="empty_group">No channels in this category.</string>
+
+    <!-- source picker (Phase 28) -->
+    <string name="src_tab_countries">Countries</string>
+    <string name="src_tab_categories">Categories</string>
+    <string name="src_tab_languages">Languages</string>
+    <string name="src_tab_custom">Custom link</string>
+    <string name="src_filter_hint">Type to filter</string>
+    <string name="src_none">Nothing matches.</string>
+
+    <!-- settings screen (Phase 31) -->
+    <string name="set_hide_dead">Hide offline channels</string>
+    <string name="set_hide_dead_sub">Leave channels that did not answer out of the lists</string>
+    <string name="set_skip_dead">Skip offline channels when zapping</string>
+    <string name="set_skip_dead_sub">Prev / Next jumps over channels that are offline</string>
+    <string name="set_auto_check">Check channels in background</string>
+    <string name="set_auto_check_sub">Test the channels on Home so offline ones can be dimmed or hidden</string>
+    <string name="set_quality">Video quality</string>
+    <string name="set_quality_sub">Highest quality used from the next channel on</string>
+    <string name="set_quality_auto">Auto</string>
+    <string name="set_quality_sd">SD</string>
+    <string name="set_quality_720">720p</string>
+    <string name="set_source">Channel source</string>
+    <string name="set_source_sub">Country, category, language or your own link</string>
+    <string name="set_refresh">Refresh playlist now</string>
+    <string name="set_refresh_sub">Download the channel list again</string>
+    <string name="set_refreshing">Refreshing playlist…</string>
+    <string name="set_clear_cache">Clear image cache</string>
+    <string name="set_clear_cache_sub">Remove the saved channel logos (they load again when needed)</string>
+    <string name="set_cache_cleared">Image cache cleared</string>
+    <string name="set_about">About</string>
+    <string name="set_version">Wosux Stream, version %1$s</string>
+</resources>

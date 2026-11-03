@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Size of the logo plate on the right of the hero banner (Phase 22). Phone: small square. -->
+    <dimen name="hero_plate_w">88dp</dimen>
+    <dimen name="hero_plate_h">88dp</dimen>
+</resources>

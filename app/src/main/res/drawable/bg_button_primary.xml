@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Primary button (Phase 22): brand gradient blue to cyan, 22dp radius. Focused = white 3dp ring (an accent ring would vanish on the cyan end). -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:endColor="@color/brand_cyan"
+                android:startColor="@color/brand_blue" />
+            <stroke android:width="3dp" android:color="@color/text" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:endColor="@color/brand_blue_mid"
+                android:startColor="@color/brand_blue" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:endColor="@color/brand_cyan"
+                android:startColor="@color/brand_blue" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+</selector>

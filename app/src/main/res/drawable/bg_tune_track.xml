@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Phase 37: track of the thin progress bar on the "Tuning in" screen. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/surface_focus" />
+    <corners android:radius="2dp" />
+</shape>

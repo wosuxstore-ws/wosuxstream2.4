@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Design tokens (Phase 14) -->
+    <dimen name="card_radius">12dp</dimen>
+    <dimen name="card_w_row">150dp</dimen>
+    <dimen name="card_h_row">84dp</dimen>
+    <dimen name="row_gap">10dp</dimen>
+    <dimen name="screen_pad">20dp</dimen>
+    <dimen name="hero_h">220dp</dimen>
+</resources>

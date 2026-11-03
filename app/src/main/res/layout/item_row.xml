@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Title line: row title on the left, focusable "See all >" on the right (shown only when the category has more channels than the row) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="44dp"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/screen_pad"
+        android:paddingTop="12dp"
+        android:paddingEnd="@dimen/screen_pad">
+
+        <TextView
+            android:id="@+id/rowTitle"
+            style="@style/Text.RowTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <!-- bg_button: pill with a 3dp accent ring when focused (same focus look as the other buttons) -->
+        <TextView
+            android:id="@+id/rowMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="14dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="6dp"
+            android:text="See all &gt;"
+            android:textColor="@color/text"
+            android:textSize="13sp"
+            android:visibility="gone"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <!-- Horizontal list of channel cards. Layout manager, pool and adapter are set in HomeAdapter. -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rowList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/screen_pad"
+        android:paddingEnd="@dimen/screen_pad" />
+</LinearLayout>

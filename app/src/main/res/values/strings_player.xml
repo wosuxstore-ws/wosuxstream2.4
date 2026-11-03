@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Phase 33: player overlay (content descriptions of the icon buttons + LIVE chip) -->
+    <string name="player_live">LIVE</string>
+    <string name="player_back">Back</string>
+    <string name="player_prev">Previous channel</string>
+    <string name="player_next">Next channel</string>
+    <string name="player_play">Play</string>
+    <string name="player_pause">Pause</string>
+    <string name="player_fav_add">Add to favorites</string>
+    <string name="player_fav_remove">Remove from favorites</string>
+    <string name="player_channels">Channel list</string>
+</resources>

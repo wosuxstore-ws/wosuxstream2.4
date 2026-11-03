@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Phase 33: round icon button of the player overlay. parent="" like the other custom styles.
+         Width / height / margins are set in the layout (a style cannot carry layout_* items). -->
+    <style name="PlayerIconBtn" parent="">
+        <item name="android:background">@drawable/bg_player_btn</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+</resources>

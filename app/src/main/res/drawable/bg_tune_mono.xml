@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Phase 37: initials plate of the "Tuning in" screen (deep blue gradient, top-left to bottom-right, same 8dp radius as bg_logo). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="315"
+        android:endColor="#0B2A4A"
+        android:startColor="#0F5FA8" />
+    <corners android:radius="8dp" />
+</shape>

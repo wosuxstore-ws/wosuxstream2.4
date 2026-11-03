@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:resize_mode="fit"
+        app:use_controller="false" />
+
+    <!-- catches taps (PlayerView ignores clicks when its own controller is off) -->
+    <View
+        android:id="@+id/touchLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="false" />
+
+    <!-- "Tuning in" screen (Phase 37): shown from the moment a channel is started until STATE_READY, then faded out by PlayerActivity.
+         Logo plate (or initials) + name centered, thin cyan bar under them. Not clickable, so taps still reach touchLayer.
+         Sits above the video and below buffering / error / overlay. The sliver (tuneBar, 96dp) sweeps along the track (tuneTrack, 240dp)
+         in code; keep these two widths in sync with TUNE_BAR_DP / TUNE_TRACK_DP in PlayerActivity. -->
+    <FrameLayout
+        android:id="@+id/tuning"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/tuneLogo"
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/bg_logo"
+                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tuneMono"
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/bg_tune_mono"
+                    android:gravity="center"
+                    android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:textColor="@color/text"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tuneName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:maxWidth="420dp"
+                android:textColor="@color/text"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:id="@+id/tuneTrack"
+                android:layout_width="240dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_tune_track">
+
+                <View
+                    android:id="@+id/tuneBar"
+                    android:layout_width="96dp"
+                    android:layout_height="3dp"
+                    android:background="@drawable/bg_tune_bar" />
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/buffering"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <!-- Error card (Phase 37, replaces the plain error text; the id stays @id/error). Shown after the final playback error.
+         Card = title + countdown line (only while the 5 s auto-skip runs) + two focusable buttons. Clickable but not focusable itself, so taps on it
+         do not reach touchLayer. -->
+    <LinearLayout
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_error_card"
+        android:clickable="true"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:minWidth="300dp"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/errorTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxWidth="360dp"
+            android:text="@string/player_err_title"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/errorCountdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:textColor="@color/silver"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/errRetry"
+                style="@style/Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_primary"
+                android:minHeight="40dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/player_err_retry"
+                android:textColor="@color/bg"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/errNext"
+                style="@style/Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:minHeight="40dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/player_err_next"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Overlay (Phase 33): top bar + bottom bar, faded in / out by PlayerActivity (150 ms).
+         It does not consume touches itself, so a tap on empty space still reaches touchLayer. -->
+    <FrameLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <!-- Top gradient bar: back arrow, channel name, LIVE chip -->
+        <LinearLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@drawable/bg_player_top"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="40dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/PlayerIconBtn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/player_back"
+                android:src="@drawable/ic_player_back" />
+
+            <TextView
+                android:id="@+id/chName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/liveChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_live"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
+                android:text="@string/player_live"
+                android:textColor="@color/text"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Bottom gradient bar: "12 / 340  •  Category", then the round icon buttons -->
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_overlay"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="48dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/chInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/silver"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:id="@+id/controls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnPrev"
+                    style="@style/PlayerIconBtn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/player_prev"
+                    android:nextFocusLeft="@id/btnBack"
+                    android:src="@drawable/ic_player_prev" />
+
+                <ImageButton
+                    android:id="@+id/btnPlay"
+                    style="@style/PlayerIconBtn"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/player_pause"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_player_pause" />
+
+                <ImageButton
+                    android:id="@+id/btnNext"
+                    style="@style/PlayerIconBtn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/player_next"
+                    android:src="@drawable/ic_player_next" />
+
+                <ImageButton
+                    android:id="@+id/btnFav"
+                    style="@style/PlayerIconBtn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/player_fav_add"
+                    android:src="@drawable/ic_player_heart" />
+
+                <!-- Phase 34: opens the channel panel -->
+                <ImageButton
+                    android:id="@+id/btnChannels"
+                    style="@style/PlayerIconBtn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/player_channels"
+                    android:src="@drawable/ic_player_list" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Channel panel (Phase 34): right side, 300dp. Clickable (but not focusable) so taps on it do not reach touchLayer. -->
+    <LinearLayout
+        android:id="@+id/channelPanel"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="#E60A0D12"
+        android:clickable="true"
+        android:focusable="false"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/panelTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="18dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="8dp"
+            android:text="@string/player_channels"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/channelList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp" />
+    </LinearLayout>
+</FrameLayout>
